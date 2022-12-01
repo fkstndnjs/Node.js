@@ -17,10 +17,10 @@ console.log("\n");
 
 console.log("-------- print object --------");
 // print object
-const student = { name: "ellie", age: 20 };
-console.log(student);
-console.table(student);
-console.dir(student, { showHidden: true, colors: false, depth: 0 });
+const person = { name: "석현", age: 25 };
+console.log(person);
+console.table(person);
+console.dir(person, { showHidden: true, colors: false, depth: 0 });
 console.log("\n");
 
 console.log("-------- measuring time --------");
