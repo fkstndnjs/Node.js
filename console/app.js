@@ -1,30 +1,26 @@
-// clear
 console.clear(); // 콘솔이나 터미널 화면 정리
 
 console.log("-------- log level --------");
-// log level
 console.log("log");
-console.info("info"); // 정보
-console.warn("warn"); // 경보
-console.error("error"); // 에러
+console.info("info");
+console.warn("warn");
+console.error("error");
 console.log("\n");
 
 console.log("-------- assert --------");
-// assert
 console.assert(2 === 3, "not same!");
 console.assert(2 === 2, "same!");
 console.log("\n");
 
 console.log("-------- print object --------");
-// print object
-const person = { name: "석현", age: 25 };
+const person = { name: "석현", age: 25, stack: { node: true } };
 console.log(person);
 console.table(person);
 console.dir(person, { showHidden: true, colors: false, depth: 0 });
+console.dir(person, { showHidden: true, colors: true, depth: 1 });
 console.log("\n");
 
 console.log("-------- measuring time --------");
-// measuring time
 console.time("for loop");
 for (let i = 0; i < 1000000; i++) {
     i++;
@@ -33,7 +29,6 @@ console.timeEnd("for loop");
 console.log("\n");
 
 console.log("-------- counting --------");
-// counting
 function a() {
     console.count("a function");
 }
@@ -45,7 +40,6 @@ a();
 console.log("\n");
 
 console.log("-------- trace --------");
-// trace
 function f1() {
     f2();
 }
