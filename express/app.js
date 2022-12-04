@@ -28,5 +28,9 @@ app.get("/test/test", (req, res) => {
   res.send("GET /test/test");
 });
 
+test("should first", () => {
+  second;
+});
+
 // 8080포트로 서버 열기
 app.listen(8000);
