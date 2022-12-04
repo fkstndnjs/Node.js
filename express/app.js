@@ -3,29 +3,30 @@ import express from "express";
 // 서버 생성
 const app = express();
 
-// "http://localhost:8000/" url로 GET 요청이 들어올 때 담당하는 콜백 함수 생성
-app.get("/", (req, res) => {
-  console.log("req.url", req.url);
-  console.log("req.method", req.method);
-
-  // http 요청 응답
-  res.send("HOME");
+// res: json
+// json 형태로 보내줌
+app.get("/json", (req, res) => {
+  res.json(12);
 });
 
-// params
-app.get("/params/:id", (req, res) => {
-  console.log("req.params: ", req.params);
-  console.log("req.params: ", req.params.id);
-
-  res.send("Params Test");
+// res: sendStatus
+// http 상태 코드만 보냄
+app.get("/sendStatus", (req, res) => {
+  res.sendStatus(200);
 });
 
-// query
-app.get("/query", (req, res) => {
-  console.log("req.query: ", req.query);
-  console.log("req.query: ", req.query.id);
+// res: status + send
+// http 상태를 지정하고 보내고 싶은 것까지 같이 보냄
+app.get("/send", (req, res) => {
+  res.status(201).send("SEND + STATUS");
+});
 
-  res.send("Query Test");
+// res: header
+// 응답 헤더를 지정할 수 있음
+// key: value 형태로 지정하면 됨
+app.get("/header", (req, res) => {
+  res.header("name", "YuSeokHyun");
+  res.send("HEADER");
 });
 
 // 8080포트로 서버 열기
