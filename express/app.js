@@ -3,30 +3,29 @@ import express from "express";
 // 서버 생성
 const app = express();
 
-// res: json
-// json 형태로 보내줌
-app.get("/json", (req, res) => {
-  res.json(12);
+// app.use
+// 지정한 경로 뒤에 어떤 경로가 와도 실행되는 미들웨어
+app.use("/", (req, res, next) => {
+  console.log("app.use()");
+  next();
 });
 
-// res: sendStatus
-// http 상태 코드만 보냄
-app.get("/sendStatus", (req, res) => {
-  res.sendStatus(200);
+// 경로를 아무것도 넣지 않으면 "/"로 설정된다.
+app.use((req, res, next) => {
+  console.log("app.use() 2");
+  next();
 });
 
-// res: status + send
-// http 상태를 지정하고 보내고 싶은 것까지 같이 보냄
-app.get("/send", (req, res) => {
-  res.status(201).send("SEND + STATUS");
+app.get("/", (req, res) => {
+  res.send("GET /");
 });
 
-// res: header
-// 응답 헤더를 지정할 수 있음
-// key: value 형태로 지정하면 됨
-app.get("/header", (req, res) => {
-  res.header("name", "YuSeokHyun");
-  res.send("HEADER");
+app.get("/test", (req, res) => {
+  res.send("GET /test");
+});
+
+app.get("/test/test", (req, res) => {
+  res.send("GET /test/test");
 });
 
 // 8080포트로 서버 열기
