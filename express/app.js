@@ -8,12 +8,15 @@ const app = express();
 app.use(express.json());
 
 app.get("/file1", (req, res) => {
-    fs.readFile("./file1.txt", (err, data) => {
+    fs.readFile("/file1.txt", (err, data) => {
         if (err) {
             res.status(404).send("file1.txt NOT FOUND");
+        } else {
+            // else로 안 감싸주면 함수는 return을 만날 때까지 실행되므로
+            // error가 발생하면 아래의 코드가 실행된다
+            const text = data.toString();
+            res.send(text);
         }
-        const text = data.toString();
-        res.send(text);
     });
 });
 
