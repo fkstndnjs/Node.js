@@ -11,7 +11,6 @@ app.get("/test", (req, res) => {
     res.send("GET /test");
 });
 
-// e
 app.get("/error", (req, res, next) => {
     next(new Error("Error!"));
 });
@@ -24,7 +23,7 @@ app.get("/error2", (req, res, next) => {
     }
 });
 
-// 요청이 들어온 url을 담당하는 미들웨어가 없을 때
+// 요청이 들어온 url에 응답하는 함수가 없을 때
 app.use((req, res, next) => {
     res.status(404).send("NOT FOUND");
 });
