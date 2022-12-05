@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // express.static()
-// 경로를 지정하고 그 경로의 파일들은 url로 가져올 수 있다.
+// 경로를 지정하고 그 경로에 존재하는 파일들은 url로 가져올 수 있게 해주는 미들웨어
 app.use(express.static());
 
 app.get("/", (req, res) => {
