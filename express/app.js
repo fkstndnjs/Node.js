@@ -11,6 +11,7 @@ app.get("/file1", (req, res) => {
     fs.readFile("/file1.txt", (err, data) => {
         if (err) {
             res.status(404).send("file1.txt NOT FOUND");
+            res.send(data);
         }
     });
 });
@@ -25,8 +26,12 @@ app.get("/file2", async (req, res) => {
 });
 
 app.get("/file3", async function (req, res) {
-    const data = await fsAsync.readFile("/file3.txt");
-    res.send(data);
+    try {
+        const data = await fsAsync.readFile("/file3.txt");
+        res.send(data);
+    } catch (error) {
+        res.status(404).send("file3.txt NOT FOUND");
+    }
 });
 
 app.use((error, req, res, next) => {
