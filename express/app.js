@@ -1,17 +1,40 @@
 import express from "express";
+import fs from "fs";
+import fsAsync from "fs/promises";
 
 // 서버 생성
 const app = express();
 
-// 요청으로 넘어오는 json body값을 읽기 위해서는 express.json() 미들웨어를 사용해야 한다
-// 사용하지 않으면 undefined로 넘어온다
 app.use(express.json());
 
-// post는 서버에 무언가를 생성할 때 사용하는 http 메서드이다
-app.post("/", (req, res) => {
-    console.log(req.body);
-    res.send(req.body);
+app.get("/file1", (req, res) => {
+    fs.readFile("/file1.txt", (err, data) => {
+        if (err) {
+            res.status(404).send("file1.txt NOT FOUND");
+        }
+    });
 });
+
+app.get("/file2", async (req, res) => {
+    return fsAsync
+        .readFile("/file2.txt")
+        .then((data) => res.send(data))
+        .catch((err) => {
+            res.status(404).send("file2.txt NOT FOUND");
+        });
+});
+
+app.get("/file3", async function (req, res) {
+    const data = await fsAsync.readFile("/file3.txt");
+    res.send(data);
+});
+
+app.use((error, req, res, next) => {
+    console.error(error);
+    res.status(500).json({ message: "Something went wrong" });
+});
+
+app.listen(8080);
 
 // 8000포트로 서버 열기
 app.listen(8000);
