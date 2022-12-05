@@ -1,5 +1,7 @@
 import express from "express";
-import userRouter from "./app-router";
+// "type": "module"에서는 파일을 import할 때 확장자까지 붙여주어야 한다
+// 안하면 [ERR_MODULE_NOT_FOUND] 에러가 발생한다
+import userRouter from "./app-router.js ";
 
 // 서버 생성
 const app = express();
