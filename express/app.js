@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import morgan from "morgan";
+import helmet from "helmet";
 
 // 서버 생성
 const app = express();
@@ -26,6 +28,16 @@ app.use(cors());
 // 외부 미들웨어로 "npm i cookie-parser"를 통해 설치해야 한다
 // header에 담겨있는 쿠키를 자바스크립트 객체로 파싱해주는 미들웨어
 app.use(cookieParser());
+
+// morgan()
+// 외부 미들웨어로 "npm i cookie-parser"를 통해 설치해야 한다
+// http 메서드나 경로 등 다양한 정보를 콘솔에 남겨주는 미들웨어
+app.use(morgan("combined"));
+
+// helmet()
+// 외부 미들웨어로 "npm i cookie-parser"를 통해 설치해야 한다
+// 각종 보안 관련 설정을 해주는 미들웨어
+app.use(helmet());
 
 app.post("/", (req, res) => {
     res.send({ body: req.body, cookie: req.cookies });
