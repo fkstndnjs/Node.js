@@ -1,22 +1,34 @@
 import express from "express";
+import cors from "cors";
+import cookieParser from "cookie-parser";
 
 // 서버 생성
 const app = express();
 
 // express.json()
-// json 형식(Content-Type: Application/json)의 req.body를 파싱해주는 미들웨어
+// json 형식(Content-Type: Application/json)의 req.body를 자바스크립트 객체로 파싱해주는 미들웨어
 app.use(express.json());
 
 // express.urlencoded()
-// HTML form 형식(Content-Type: Application/x-www-form-urlencoded)의 req.body를 파싱해주는 미들웨어
+// HTML form 형식(Content-Type: Application/x-www-form-urlencoded)의 req.body를 자바스크립트 객체로 파싱해주는 미들웨어
 app.use(express.urlencoded({ extended: false }));
 
 // express.static()
 // 경로를 지정하고 그 경로에 존재하는 파일들은 url로 가져올 수 있게 해주는 미들웨어
-app.use(express.static());
+app.use(express.static("public"));
 
-app.get("/", (req, res) => {
-    res.send("HOME");
+// cors()
+// 외부 미들웨어로 "npm i cors"를 통해 설치해야 한다
+// CORS(Cross-Origin Resource Sharing) 정책을 손쉽게 다룰 수 있게 해주는 미들웨어
+app.use(cors());
+
+// cookieParser()
+// 외부 미들웨어로 "npm i cookie-parser"를 통해 설치해야 한다
+// header에 담겨있는 쿠키를 자바스크립트 객체로 파싱해주는 미들웨어
+app.use(cookieParser());
+
+app.post("/", (req, res) => {
+    res.send({ body: req.body, cookie: req.cookies });
 });
 
 // 8000포트로 서버 열기
