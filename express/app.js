@@ -9,6 +9,7 @@ app.use(express.json());
 
 // post는 서버에 무언가를 생성할 때 사용하는 http 메서드이다
 app.post("/", (req, res) => {
+    console.log(req.body);
     res.send(req.body);
 });
 
