@@ -45,5 +45,5 @@ app.use((error, req, res, next) => {
     res.send("ERROR");
 });
 
-// 8080포트로 서버 열기
+// 8000포트로 서버 열기
 app.listen(8000);
