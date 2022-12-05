@@ -8,7 +8,7 @@ const app = express();
 app.use(express.json());
 
 app.get("/file1", (req, res) => {
-    fs.readFile("/file1.txt", (err, data) => {
+    fs.readFile("./file1.txt", (err, data) => {
         if (err) {
             res.status(404).send("file1.txt NOT FOUND");
         } else {
@@ -22,7 +22,7 @@ app.get("/file1", (req, res) => {
 
 app.get("/file2", (req, res) => {
     fsAsync
-        .readFile("/file2.txt")
+        .readFile("./file2.txt")
         .then((data) => {
             const text = data.toString();
             res.send(text);
@@ -34,7 +34,7 @@ app.get("/file2", (req, res) => {
 
 app.get("/file3", async function (req, res) {
     try {
-        const data = await fsAsync.readFile("/file3.txt");
+        const data = await fsAsync.readFile("./file3.txt");
         const text = data.toString();
         res.send(text);
     } catch (error) {
