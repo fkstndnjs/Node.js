@@ -16,7 +16,7 @@ app.get("/file1", (req, res) => {
     });
 });
 
-app.get("/file2", async (req, res) => {
+app.get("/file2", (req, res) => {
     return fsAsync
         .readFile("/file2.txt")
         .then((data) => res.send(data))
