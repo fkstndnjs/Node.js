@@ -20,7 +20,10 @@ app.get("/file1", (req, res) => {
 app.get("/file2", (req, res) => {
     return fsAsync
         .readFile("/file2.txt")
-        .then((data) => res.send(data))
+        .then((data) => {
+            const text = data.toString();
+            res.send(text);
+        })
         .catch((err) => {
             res.status(404).send("file2.txt NOT FOUND");
         });
@@ -29,12 +32,14 @@ app.get("/file2", (req, res) => {
 app.get("/file3", async function (req, res) {
     try {
         const data = await fsAsync.readFile("/file3.txt");
-        res.send(data);
+        const text = data.toString();
+        res.send(text);
     } catch (error) {
         res.status(404).send("file3.txt NOT FOUND");
     }
 });
 
+// 위에서도 안 잡힌 에러는 app.use()로 생성한 에러 핸들러에서 잡힌다
 app.use((error, req, res, next) => {
     console.error(error);
     res.status(500).json({ message: "ERROR" });
