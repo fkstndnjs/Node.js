@@ -8,11 +8,12 @@ const app = express();
 app.use(express.json());
 
 app.get("/file1", (req, res) => {
-    fs.readFile("/file1.txt", (err, data) => {
+    fs.readFile("./file1.txt", (err, data) => {
         if (err) {
             res.status(404).send("file1.txt NOT FOUND");
-            res.send(data);
         }
+        const text = data.toString();
+        res.send(text);
     });
 });
 
