@@ -42,7 +42,7 @@ app.get("/file3", async function (req, res) {
     }
 });
 
-// 위에서도 안 잡힌 에러는 app.use()로 생성한 에러 핸들러에서 잡힌다
+// 위에서도 안 잡힌 에러는 여기서 잡힌다
 app.use((error, req, res, next) => {
     console.error(error);
     res.status(500).json({ message: "ERROR" });
