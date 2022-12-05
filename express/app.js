@@ -39,6 +39,10 @@ app.use(morgan("combined"));
 // 각종 보안 관련 설정을 해주는 미들웨어
 app.use(helmet());
 
+app.get("/", (req, res) => {
+    res.send("HOME");
+});
+
 app.post("/", (req, res) => {
     res.send({ body: req.body, cookie: req.cookies });
 });
