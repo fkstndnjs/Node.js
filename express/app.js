@@ -4,11 +4,11 @@ import express from "express";
 const app = express();
 
 // express.json()
-// json 형식(Content-Type: Application/json)의 req.body를 객체로 파싱해주는 미들웨어
+// json 형식(Content-Type: Application/json)의 req.body를 파싱해주는 미들웨어
 app.use(express.json());
 
 // express.urlencoded()
-// HTML의 form 데이터가 submit 되면 파싱해주는 미들웨어
+// HTML form 형식(Content-Type: Application/x-www-form-urlencoded)의 req.body를 파싱해주는 미들웨어
 app.use(express.urlencoded({ extended: false }));
 
 // express.static()
