@@ -18,7 +18,7 @@ app.get("/file1", (req, res) => {
 });
 
 app.get("/file2", (req, res) => {
-    return fsAsync
+    fsAsync
         .readFile("/file2.txt")
         .then((data) => {
             const text = data.toString();
