@@ -32,7 +32,7 @@ app.get("/file2", (req, res) => {
         });
 });
 
-app.get("/file3", async function (req, res) {
+app.get("/file3", async (req, res) => {
     try {
         const data = await fsAsync.readFile("./file3.txt");
         const text = data.toString();
