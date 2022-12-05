@@ -29,7 +29,7 @@ app.get("/error3/:id", (req, res, next) => {
     if (req.params.id === "ysh") {
         res.send("LOGIN SUCCESS");
     } else {
-        throw new Error("LOGIN FALSE");
+        next(new Error("LOGIN FALSE"));
     }
 });
 
