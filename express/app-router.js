@@ -5,3 +5,5 @@ const router = express.Router();
 router.get("/", (req, res) => {
     res.send("ROUTER");
 });
+
+export default router;
