@@ -31,7 +31,7 @@ app.use(cookieParser());
 
 // morgan()
 // 외부 미들웨어로 "npm i cookie-parser"를 통해 설치해야 한다
-// http 메서드나 경로 등 다양한 정보를 콘솔에 남겨주는 미들웨어
+// 클라이언트에서 서버로 요청이 들어오면, 그 요청에 대한 http 메서드나 경로 등 다양한 정보를 콘솔에 출력하는 미들웨어
 app.use(morgan("combined"));
 
 // helmet()
