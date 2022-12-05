@@ -29,6 +29,7 @@ app.use((req, res, next) => {
 });
 
 // 에러 핸들러
+// 위 응답에서 에러가 next() 안에 담겨지면 다른 미들웨어나 함수는 무시하고 여기로 온다
 app.use((error, req, res, next) => {
     console.log(error);
     res.send("ERROR");
