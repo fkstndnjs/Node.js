@@ -36,10 +36,8 @@ app.get("/file3", async function (req, res) {
 
 app.use((error, req, res, next) => {
     console.error(error);
-    res.status(500).json({ message: "Something went wrong" });
+    res.status(500).json({ message: "ERROR" });
 });
-
-app.listen(8080);
 
 // 8000포트로 서버 열기
 app.listen(8000);
